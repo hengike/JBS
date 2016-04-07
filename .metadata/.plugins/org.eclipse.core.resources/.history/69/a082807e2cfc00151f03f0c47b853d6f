@@ -1,0 +1,32 @@
+package hu.elte;
+
+import java.util.function.Consumer;
+
+import hu.elte.Signal.TimeUnit;
+
+public class Time {
+
+	public Signal<Integer> every(TimeUnit timeUnit) {
+
+		Signal<Integer> signal = new Signal<Integer>() {
+
+			@Override
+			public void run() {
+				while (true) {
+					Consumer<String> c = (x) -> System.out.print(this.value + "---------->");
+					try {
+						Thread.sleep(timeUnit.getMiliseconds());
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
+			
+		};
+		
+		return signal;
+	}
+
+}

@@ -1,0 +1,6 @@
+package hu.elte;
+
+public class IntegerWrapper {
+	Integer value;
+
+}

@@ -1,0 +1,12 @@
+package hu.elte;
+
+import java.util.function.Consumer;
+
+public abstract class Signal <T> implements Consumer {
+
+	T value;
+	
+	
+	public abstract void changeValue();
+	
+}

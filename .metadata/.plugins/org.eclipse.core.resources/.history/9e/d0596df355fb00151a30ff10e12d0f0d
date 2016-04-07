@@ -1,0 +1,32 @@
+package hu.elte;
+
+import java.util.function.Consumer;
+
+public abstract class Signal <T> implements Runnable {
+
+	T value;
+	
+	public static void generateConstantSignal(){
+		Signal<Integer> asd = new Signal<Integer>(){
+
+			@Override
+			public void run() {
+				while(true){
+					Consumer<String> c = (x) -> System.out.println(this.value);
+					c.accept("Java2s.com");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				
+			}
+			
+		};
+	}
+	
+	
+}

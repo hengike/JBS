@@ -1,0 +1,48 @@
+package hu.elte;
+
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+import hu.elte.Signal.TimeUnit;
+
+public class Main {
+
+	/*public static void main(String[] args){
+
+
+			
+			IntegerWrapper iw = new IntegerWrapper();
+			iw.setValue(10);
+			
+			IntegerWrapper iw2 = new IntegerWrapper();
+			iw2.setValue(100);
+			
+			iw.join(iw2, (a,b) -> a + b);
+			
+			System.out.println(iw.getValue());
+			System.out.println(iw2.getValue());
+			
+			iw.map(a -> a + 1);
+			System.out.println(iw.getValue());
+			System.out.println(iw2.getValue());
+
+	}*/
+	
+	
+	public static long start;
+	public static void main(String[] args){
+		start = System.currentTimeMillis();
+		Time time = new Time();
+		ConsoleSignal console = new ConsoleSignal();
+		Thread consoleThread = new Thread(console);
+		consoleThread.start();
+		Signal<Integer> timer = time.every(TimeUnit.Seconds);
+		timer.join(console, (a,b) -> a + b);
+		Thread timeThread = new Thread();
+		timeThread.start();
+
+	}
+	
+	
+}

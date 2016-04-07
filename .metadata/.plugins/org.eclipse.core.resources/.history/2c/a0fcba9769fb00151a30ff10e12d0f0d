@@ -1,0 +1,22 @@
+package hu.elte;
+
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+public class Main {
+
+	public static void main(String[] args){
+
+			// Create a Function from a lambda expression.
+			// ... It returns the argument multiplied by two.
+			BiFunction<Integer, Integer,Integer> func = (a,b) -> a + b;
+
+			// Apply the function to an argument of 10.
+			int result = func.apply(10,5);
+			System.out.println(result);
+
+	}
+	
+	
+}
