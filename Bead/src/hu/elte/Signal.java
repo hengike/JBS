@@ -37,15 +37,8 @@ public abstract class Signal<T> {
 	public static final Integer constantValue = 1;
 
 	public static void generateConstantSignal() {
-		/*
-		 * Time<Integer> asd = new Time<Integer>() {
-		 * 
-		 * @Override public void run() { while (true) { Consumer<String> c = (x)
-		 * -> System.out.print(this.value + "---------->"); try {
-		 * Thread.sleep(1000); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } } } }; asd.value =
-		 * constantValue; new Thread(asd).start();
-		 */
+		Signal<Integer> signal = new Signal<Integer>(){		
+		};	
 	}
 
 
@@ -60,25 +53,11 @@ public abstract class Signal<T> {
 				this.setValue((T)function.apply(first.getValue(), second.getValue()));
 			}
 		};
-		//sum.change();
 		first.addDependency(sum);
 		second.addDependency(sum);
 		return sum;
 	}
 
-	/*public Signal<T> joinFileOutput(Signal<T> second, BiFunction<T, T, T> function) {
-		Signal<T> first = this;
-		Signal<T> sum = new Signal<T>() {
-			public void change() {
-				this.setValue(function.apply(first.getValue(), second.getValue()));
-				Consumer<String> c = (x) -> writeToFile((String) this.value);
-				c.accept("");
-			}
-		};
-		first.addDependency(sum);
-		second.addDependency(sum);
-		return sum;
-	}*/
 
 	private void writeToFile(String string) {
 		try {
@@ -100,7 +79,6 @@ public abstract class Signal<T> {
 	}
 
 	public void setValue(T value) {
-		//this.change();
 		this.value = value;
 	}
 
