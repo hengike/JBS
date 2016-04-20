@@ -48,3 +48,4 @@ Temporary Items
 # Eclipse things
 .metadata/
 Bead/bin/hu/elte/Main.class
+*.class

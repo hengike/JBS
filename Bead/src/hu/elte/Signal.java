@@ -93,8 +93,8 @@ public abstract class Signal<T> {
 	}
 
 	public Signal<T> accumulate(BiFunction<T, T, T> function, T t) {
-		//this.setValue(t);
 		this.setValue(function.apply(this.getValue(), t));
+		this.change();
 		return this;
 
 	}
@@ -114,8 +114,8 @@ public abstract class Signal<T> {
 		}
 	}
 	public void map(Consumer<T> c){
-		c.accept(this.getValue());
 		this.change();
+		c.accept(this.getValue());
 	}
 
 
