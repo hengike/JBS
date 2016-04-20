@@ -46,4 +46,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 # Eclipse things
-.metadata/*
+.metadata/
+Bead/bin/hu/elte/Main.class
