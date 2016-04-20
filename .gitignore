@@ -46,4 +46,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 # Eclipse things
-.metadata
+.metadata/*
