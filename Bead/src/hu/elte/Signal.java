@@ -15,6 +15,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class Signal<T> {
+	
+	String type = "default";
 
 	List<Signal> dependentSignals = new ArrayList<Signal>();
 
@@ -37,10 +39,9 @@ public abstract class Signal<T> {
 	public static final Integer constantValue = 1;
 
 	public static void generateConstantSignal() {
-		Signal<Integer> signal = new Signal<Integer>(){		
-		};	
+		Signal<Integer> signal = new Signal<Integer>() {
+		};
 	}
-
 
 	public T getValue() {
 		return value;
@@ -50,14 +51,15 @@ public abstract class Signal<T> {
 		Signal<T> first = this;
 		Signal<T> sum = new Signal<T>() {
 			public void change() {
-				this.setValue((T)function.apply(first.getValue(), second.getValue()));
+				this.setValue((T) function.apply(first.getValue(), second.getValue()));
 			}
 		};
+		//sum.change();
 		first.addDependency(sum);
 		second.addDependency(sum);
+		sum.type = "joined"; 
 		return sum;
 	}
-
 
 	private void writeToFile(String string) {
 		try {
@@ -72,9 +74,15 @@ public abstract class Signal<T> {
 	}
 
 	public Signal<T> accumulate(BiFunction<T, T, T> function, T t) {
-		this.setValue(function.apply(this.getValue(), t));
-		this.change();
-		return this;
+		Signal<T> first = this;
+		Signal<T> sum = new Signal<T>() {
+			public void change() {
+				this.setValue((T) function.apply(first.getValue(), t));
+			}
+		};
+		first.addDependency(sum);
+		sum.type = "accumulated"; 
+		return sum;
 
 	}
 
@@ -87,14 +95,26 @@ public abstract class Signal<T> {
 	}
 
 	public void change() {
+		System.out.println("Not overriden change in:" + this.type);
+	}
+	public void giveSignal(){
+		this.change();
 		for (Signal act : dependentSignals) {
-			act.change();
+			act.giveSignal();
 		}
 	}
-	public void map(Consumer<T> c){
-		this.change();
-		c.accept(this.getValue());
-	}
 
+	public Signal<T> map(Consumer<T> c) {
+		Signal<T> first = this;
+		Signal<T> sum = new Signal<T>() {
+			public void change() {
+				c.accept(first.getValue());
+			}
+		};
+		first.addDependency(sum);
+		sum.type = "maped"; 
+		return sum;
+
+	}
 
 }
