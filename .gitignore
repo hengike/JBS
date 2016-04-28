@@ -49,3 +49,15 @@ Temporary Items
 .metadata/
 Bead/bin/hu/elte/Main.class
 *.class
+.metadata/.plugins/oracle.eclipse.tools.common.services/Bead/command.num
+*.log
+.metadata/.plugins/oracle.eclipse.tools.common.services/Bead/command.num
+*.num
+*.tis
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_3.tii
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_3.nrm
+*.frq
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_3.fnm
+*.fdx
+*.fdt
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_3.prx
