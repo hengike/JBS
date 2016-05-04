@@ -63,3 +63,8 @@ Bead/bin/hu/elte/Main.class
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_3.prx
 *.num
 .metadata/.plugins/oracle.eclipse.tools.common.services/Bead/command.num
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments_5
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_4.fnm
+*.nrm
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_4.tii
+*.gen
