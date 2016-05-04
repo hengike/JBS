@@ -68,3 +68,5 @@ Bead/bin/hu/elte/Main.class
 *.nrm
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_4.tii
 *.gen
+*.gen
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/_4.prx
