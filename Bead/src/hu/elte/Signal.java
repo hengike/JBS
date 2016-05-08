@@ -47,11 +47,11 @@ public abstract class Signal<T> {
 		return value;
 	}
 
-	public Signal join(Signal second, BiFunction function) {
+	public <U> Signal join(Signal<U> second, BiFunction<T,U,?> function) {
 		Signal first = this;
 		Signal sum = new Signal() {
 			public void change() {
-				this.setValue((T) function.apply(first.getValue(), second.getValue()));
+				this.setValue(function.apply( (T)first.getValue(), (U)second.getValue()));
 			}
 		};
 		//sum.change();
@@ -73,11 +73,11 @@ public abstract class Signal<T> {
 
 	}
 
-	public Signal accumulate(BiFunction function, T t) {
+	public <U> Signal accumulate(BiFunction<T,U,?> function, U t) {
 		Signal first = this;
 		Signal sum = new Signal() {
 			public void change() {
-				this.setValue(function.apply(first.getValue(), t));
+				this.setValue(function.apply((T)first.getValue(), t));
 			}
 		};
 		first.addDependency(sum);
@@ -104,7 +104,7 @@ public abstract class Signal<T> {
 		}
 	}
 
-	public Signal map(Function function) {
+	public Signal map(Function<T,?> function) {
 		Signal<T> first = this;
 		Signal sum = new Signal() {
 			public void change() {
@@ -114,7 +114,6 @@ public abstract class Signal<T> {
 		first.addDependency(sum);
 		sum.type = "maped"; 
 		return sum;
-
 	}
 
 

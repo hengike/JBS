@@ -16,19 +16,33 @@ public class Main {
 		IntegerWrapper ad = new IntegerWrapper();
 
 		
-		Signal sign = new Signal<Integer>() {};
+		Signal<Integer> sign = new Signal<Integer>() {};
 		sign.setValue(1);		
 		Signal signAccumulated =sign.accumulate((c,x) -> c + "", 1);
 		signAccumulated.change();
 		System.out.println(signAccumulated.getValue().getClass());
 		
+		Signal<Double> signAccumulatedDouble = sign.accumulate((c,x) -> c + 0.2, 1);
+		signAccumulatedDouble.change();
+		System.out.println(signAccumulatedDouble.getValue().getClass());
+		
 		Signal signJoined = sign.join(signAccumulated, (line, count) -> count + ": " + line);
 		signJoined.change();			
 		System.out.println(signJoined.getValue().getClass());
 		
-		Signal mappedSignal = sign.map(i -> i+ "");
-		mappedSignal.change();
-		System.out.println(mappedSignal.getValue().getClass());
+		Signal<Double> signJoinedDouble = sign.join(signAccumulated, (line, count) ->  line +0.01);
+		signJoinedDouble.change();
+		System.out.println(signJoinedDouble.getValue().getClass());
+		
+		Signal signMapped = sign.map(i -> i+ "");
+		signMapped.change();
+		System.out.println(signMapped.getValue().getClass());
+		
+		Signal<Double> signMappedDouble = sign.map(i -> 0.01+i);
+		signMappedDouble.change();
+		System.out.println(signMappedDouble.getValue().getClass());
+
+
 
 	}
 

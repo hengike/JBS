@@ -73,3 +73,10 @@ Bead/bin/hu/elte/Main.class
 *.gen
 .recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments.gen
 *.gen
+*.tii
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments.gen
+*.fnm
+*.prx
+.recommenders/index/http___download_eclipse_org_recommenders_models_mars_/segments_6
+*.gen
+*.gen
